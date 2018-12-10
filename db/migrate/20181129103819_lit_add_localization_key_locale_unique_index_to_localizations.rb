@@ -2,6 +2,8 @@ class LitAddLocalizationKeyLocaleUniqueIndexToLocalizations < Rails::VERSION::MA
                                                               ActiveRecord::Migration[4.2] :
                                                               ActiveRecord::Migration
   def change
-    add_index :lit_localizations, [:localization_key_id, :locale_id], unique: true unless index_exists?(:lit_localizations, [:localization_key_id, :locale_id])
+    unless index_exists?(:lit_localizations, [:localization_key_id, :locale_id])
+      add_index :lit_localizations, [:localization_key_id, :locale_id], unique: true
+    end
   end
 end
